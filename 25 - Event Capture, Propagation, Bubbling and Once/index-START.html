@@ -45,9 +45,21 @@
       const divs = document.querySelectorAll("div");
       function logText(e) {
         console.log(this.classList.value);
+        // e.stopPropagation();
+        // stopPropagation will stop bubbling events up (will run on the element that was clicked) can be used with bubbling and capture
       }
 
-      divs.forEach((div) => div.addEventListener("click", logText));
+      // once will listen for a click and then unbind itself (same as doing div.removeEventListener('click', logText))
+      // once can be used if you only want an element to be clicked once (ie submit cart)
+      divs.forEach((div) =>
+        div.addEventListener("click", logText, {
+          capture: false,
+          once: true,
+        })
+      );
+
+      // Capture runs function on the way down
+      // Bubbling goes up from the inner most element
     </script>
   </body>
 </html>
