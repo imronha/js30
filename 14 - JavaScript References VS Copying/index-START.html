@@ -8,11 +8,10 @@
     <script>
       // start with strings, numbers and booleans
       let pokemon = 151;
-      let pokemon2 = pokemon;
+      let pokemon2 = pokemon; // This is a copy of pokemon
       console.log(pokemon, pokemon2); // Will log 100 100
       let pokemon = 500;
       console.log(pokemon, pokemon2); // Will log 500 100
-
       // Let's say we have an array
       const players = ["Wes", "Sarah", "Ryan", "Poppy"];
 
@@ -31,12 +30,16 @@
       // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
       // So, how do we fix this? We take a copy instead!
-
+      const team2 = players.slice(); // returns a copy of the array
       // one way
 
       // or create a new array and concat the old one in
+      const team3 = [].concat(players);
 
       // or use the new ES6 Spread
+      const team4 = [...players];
+
+      const team5 = Array.from(players);
 
       // now when we update it, the original one isn't changed
 
@@ -49,8 +52,12 @@
       };
 
       // and think we make a copy:
-
+      const captain = person;
+      captain.age = 99; // Will change person.age to 99
       // how do we take a copy instead?
+      // will only go one level deep (wont copy child objects, child objects will be refs and not copies)
+      const captain2 = Object.assign({}, person, { number: 99, age: 12 });
+      console.log(captain2);
 
       // We will hopefully soon see the object ...spread
 
